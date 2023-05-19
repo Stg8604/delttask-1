@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundapp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edttxt2"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/cornercut"
+        android:fontFamily="@font/abhaya_libre"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/startbutton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/cornercut"
+        android:fontFamily="@font/abhaya_libre"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/edttxt2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="-2dp"
+        android:background="@drawable/cornor"
+        android:fontFamily="@font/anton"
+        android:paddingBottom="2dp"
+        android:text="Word"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtview2"
+        android:layout_width="130dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="85dp"
+        android:background="@drawable/cornor"
+        android:fontFamily="@font/anton"
+        android:paddingBottom="2dp"
+        android:text="Clue"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/edttxt2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/startbutton"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="80dp"
+        android:src="@mipmap/startbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:background="@drawable/highscore"
+        android:paddingTop="5dp"
+        android:text="Highscore:"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/highestscore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startbutton" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="350dp"
+        android:layout_height="125dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/crown"
+            android:layout_width="115dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/crown" />
+
+        <ImageView
+            android:id="@+id/lineleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="85dp"
+            android:layout_toLeftOf="@+id/crown"
+            android:src="@mipmap/line" />
+
+        <ImageView
+            android:id="@+id/lineright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="85dp"
+            android:layout_toRightOf="@+id/crown"
+            android:src="@mipmap/line" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/lobster"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:text="Word Jumble"
+        android:textColor="@color/teal_200"
+        android:textSize="65sp"
+        android:theme="@style/MyCustomFontTextAppearance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

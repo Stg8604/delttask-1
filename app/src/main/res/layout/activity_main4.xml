@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundapp"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-55dp">
+
+
+    <EditText
+        android:id="@+id/edttxt2"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="85dp"
+        android:background="@drawable/cornercut"
+        android:fontFamily="@font/abhaya_libre"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtview2" />
+
+    <EditText
+        android:id="@+id/edt1"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="85dp"
+        android:background="@drawable/cornercut"
+        android:fontFamily="@font/abhaya_libre"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/word" />
+
+
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="125dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/cornor"
+        android:fontFamily="@font/anton"
+        android:paddingBottom="2dp"
+        android:text="Word"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RL2" />
+
+    <Button
+        android:id="@+id/check1"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/cornercut2"
+        android:backgroundTint="@color/yellow"
+        android:fontFamily="@font/bebas_neue"
+        android:text="check"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startbutton2" />
+
+    <TextView
+        android:id="@+id/txtview2"
+        android:layout_width="125dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/cornor"
+        android:fontFamily="@font/anton"
+        android:paddingBottom="2dp"
+        android:text="Clue"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt1" />
+
+    <ImageView
+        android:id="@+id/startbutton2"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="150dp"
+        android:src="@mipmap/startbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edttxt2" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="350dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/crown"
+            android:layout_width="85dp"
+            android:layout_height="75dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/crown" />
+
+        <ImageView
+            android:id="@+id/lineleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_toLeftOf="@+id/crown"
+            android:src="@mipmap/line" />
+
+        <ImageView
+            android:id="@+id/lineright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_toRightOf="@+id/crown"
+            android:src="@mipmap/line" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/jumbly"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="105dp"
+        android:fontFamily="@font/lobster"
+        android:text="Word Jumble"
+        android:textAlignment="center"
+        android:textColor="@color/teal_200"
+        android:textSize="40sp"
+        android:theme="@style/MyCustomFontTextAppearance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <RelativeLayout
+        android:id="@+id/RL2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grid">
+
+        <EditText
+            android:id="@+id/grid1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cornercut"
+            android:padding="5dp"
+            android:paddingTop="10dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent" />
+        <EditText
+            android:id="@+id/griddy"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/X"
+            android:layout_marginEnd="180dp"
+            android:background="@drawable/cornercut"
+            android:padding="5dp"
+            android:paddingTop="10dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="272dp" />
+        <TextView
+            android:id="@+id/X"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:paddingTop="10dp"
+            android:text="X"
+            android:layout_toRightOf="@id/grid1"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            tools:layout_editor_absoluteX="134dp"
+            tools:layout_editor_absoluteY="272dp" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/grid"
+        android:layout_width="125dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/cornor"
+        android:fontFamily="@font/anton"
+        android:text="Grid"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jumbly" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rl2"
+        android:layout_width="200dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="200dp"
+        android:visibility="gone"
+        android:backgroundTint="@color/block2"
+        android:background="@color/yellow2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="20dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/coco"
+            android:text="Set Timer"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497" />
+
+        <EditText
+            android:id="@+id/txttime"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/timer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@drawable/coco"
+            android:hint="hello"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498" />
+
+        <Button
+            android:id="@+id/stocks"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@+id/txttime"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="START"
+            android:background="@drawable/cornercut"
+            app:layout_constraintEnd_toEndOf="parent" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

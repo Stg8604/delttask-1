@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity5"
+    android:background="@drawable/backgroundapp">
+
+    <GridView
+        android:id="@+id/idGVcourses"
+        android:layout_width="400dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/bloo"
+        android:horizontalSpacing="6dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ansy" />
+    <TextView
+        android:id="@+id/ansy"
+        android:layout_width="410dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="85dp"
+        android:backgroundTint="@color/block"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnToggleDark"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toStartOf="@+id/info2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/reset2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/bloo"
+        android:text="RESET"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/check2"
+        app:layout_constraintTop_toBottomOf="@+id/idGVcourses" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/check2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/bloo"
+        android:text="CHECK"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idGVcourses" />
+    <ImageView
+        android:id="@+id/hearty1"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/yellowheart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/hearty2"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/yellowheart"
+        app:layout_constraintStart_toEndOf="@+id/hearty1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/hearty3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/yellowheart"
+        app:layout_constraintStart_toEndOf="@+id/hearty2"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@mipmap/info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/info2"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
