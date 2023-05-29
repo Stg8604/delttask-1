@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.transition.Slide;
 import android.view.View;
@@ -35,6 +36,7 @@ public class MainActivity4 extends AppCompatActivity {
     private TextView txttime,txttime2;
     private Button btk;
     private CardView rl2;
+    private TextView highscore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,9 @@ public class MainActivity4 extends AppCompatActivity {
         starting=findViewById(R.id.startbutton2);
         rl2=findViewById(R.id.rl2);
         stocks=findViewById(R.id.stocks);
+        highscore=findViewById(R.id.highestscore2);
+        SharedPreferences sharedPreferences = getSharedPreferences("highscorefile", MODE_PRIVATE);
+        highscore.setText("Highscore:"+String.valueOf(sharedPreferences.getInt("highscorekey",0)));
         check1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +83,6 @@ public class MainActivity4 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity4.this,MainActivity5.class);
                 intent.putExtra("map",worclue);
-
                 intent.putExtra("grid1",Integer.parseInt(edit3.getText().toString()));
                 intent.putExtra("grid2",Integer.parseInt(edit4.getText().toString()));
                 startActivity(intent);

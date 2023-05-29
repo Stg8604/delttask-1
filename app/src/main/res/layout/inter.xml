@@ -13,7 +13,9 @@
         android:layout_height="match_parent">
         <TextView
             android:textAlignment="center"
-            android:textSize="25sp"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:paddingTop="5dp"
             android:background="@drawable/coco"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

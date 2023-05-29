@@ -33,7 +33,7 @@ public class MainActivity2 extends AppCompatActivity {
     private ExtendedFloatingActionButton reset,check;
     private ImageView info,heart1,heart2,heart3;
     private int lives=3;
-    MediaPlayer media1,media2,media3,media4,media5;
+    MediaPlayer media1,media2,media3,media4,media5,media7;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,7 @@ public class MainActivity2 extends AppCompatActivity {
         media3=MediaPlayer.create(MainActivity2.this,R.raw.info);
         media4=MediaPlayer.create(MainActivity2.this,R.raw.wrong);
         media5=MediaPlayer.create(MainActivity2.this,R.raw.back);
+        media7=MediaPlayer.create(MainActivity2.this,R.raw.home);
         one=getIntent().getStringExtra("str1");
         two=getIntent().getStringExtra("str2");
         int i=0;
@@ -220,7 +221,6 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private void checker() {
-
         temp2=temp;
         while(temp2.contains(" ")){
             temp2=temp2.replace(" ","");

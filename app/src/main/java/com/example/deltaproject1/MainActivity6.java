@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.transition.Slide;
@@ -34,20 +35,19 @@ import java.util.Map;
 import java.util.Random;
 
 public class MainActivity6 extends AppCompatActivity {
-    private GridView griddy;
     private ArrayList<Character> all = new ArrayList<>();
     private HashMap<String, String> mab = new HashMap<>();
     private int gridboy1, gridboy2;
     private int totalgrid;
-    private String word1Input_ma;
     private TextView finalans;
     private String temp2;
     private String temp="";
     private int index;
     private int currentindex=0;
-    private int score=0;
+    private int score;
     private int done=0;
     int lives=3;
+    private int store;
     private Button btnToggleDark;
     private CountDownTimer mcountdown;
     private List<String> keys;
@@ -61,13 +61,18 @@ public class MainActivity6 extends AppCompatActivity {
     private long timeleft;
     private boolean run;
     private CountDownTimer county;
+    private MediaPlayer media7,media1,media2,media3,media4,media5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main6);
-        //Assigning gridview
+        media1=MediaPlayer.create(MainActivity6.this,R.raw.endgame);
+        media2=MediaPlayer.create(MainActivity6.this,R.raw.button);
+        media3=MediaPlayer.create(MainActivity6.this,R.raw.info);
+        media4=MediaPlayer.create(MainActivity6.this,R.raw.wrong);
+        media5=MediaPlayer.create(MainActivity6.this,R.raw.back);
+        store=getIntent().getIntExtra("timeleft",0)+1;
         gv = (GridView) findViewById(R.id.idGVcourses);
-        //both are grid sizes
         gridboy1=getIntent().getIntExtra("grid1",0);
         gridboy2=getIntent().getIntExtra("grid2",0);
         heart1=findViewById(R.id.hearty1);
@@ -78,7 +83,8 @@ public class MainActivity6 extends AppCompatActivity {
         finalans=findViewById(R.id.ansy);
         timer=findViewById(R.id.timebox);
         stort=findViewById(R.id.starttime);
-        timeleft=(long)(50*1000);
+        media7=MediaPlayer.create(MainActivity6.this,R.raw.home);
+        timeleft=(long)(getIntent().getIntExtra("timeleft",0));
         btnToggleDark=findViewById(R.id.btnToggleDark);
         totalgrid=gridboy1*gridboy2;
         info=findViewById(R.id.info2);
@@ -120,18 +126,12 @@ public class MainActivity6 extends AppCompatActivity {
                     @Override
                     public void onClick(View view)
                     {
-                        // When user taps the enable/disable
-                        // dark mode button
                         if (isDarkModeOn) {
 
-                            // if dark mode is on it
-                            // will turn it off
                             AppCompatDelegate
                                     .setDefaultNightMode(
                                             AppCompatDelegate
                                                     .MODE_NIGHT_NO);
-                            // it will set isDarkModeOn
-                            // boolean to false
                             editor.putBoolean(
                                     "isDarkModeOn", false);
                             editor.apply();
@@ -142,15 +142,10 @@ public class MainActivity6 extends AppCompatActivity {
                         }
                         else {
 
-                            // if dark mode is off
-                            // it will turn it on
                             AppCompatDelegate
                                     .setDefaultNightMode(
                                             AppCompatDelegate
                                                     .MODE_NIGHT_YES);
-
-                            // it will set isDarkModeOn
-                            // boolean to true
                             editor.putBoolean(
                                     "isDarkModeOn", true);
                             editor.apply();
@@ -161,15 +156,17 @@ public class MainActivity6 extends AppCompatActivity {
                         }
                     }
                 });
+        stort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timey(timer,(timeleft+1)*1000);
+            }
+        });
         int i=0;
-        //hashmap containing words and clue
         timeleft=getIntent().getIntExtra("timeleft",0);
         mab= (HashMap<String, String>) getIntent().getSerializableExtra("map");
-        //setting all array list
-        //adapter setting up
         adapter = new CourseGVAdapter(this, courseModelArrayList);
         gv.setAdapter(adapter);
-        //shuffling the map
         keys = new ArrayList<>(mab.keySet());
         Collections.shuffle(keys);
         for(int j=0;j<keys.get(currentindex).length();j++){
@@ -188,15 +185,14 @@ public class MainActivity6 extends AppCompatActivity {
                 i++;
             }
         }
-        //setting up adapter list
         for(int j=0;j<totalgrid;j++){
             courseModelArrayList.add(new CourseModel(all.get(j)));
         }
         Collections.shuffle(courseModelArrayList);
-        //setting reset
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                media5.start();
                 Toast.makeText(MainActivity6.this, "Grid reset", Toast.LENGTH_SHORT).show();
                 temp="";
                 for(int j=0;j<keys.get(currentindex).length();j++){
@@ -215,40 +211,47 @@ public class MainActivity6 extends AppCompatActivity {
                 }
                 if (!(temp.contains("_"))) {
                     if (temp2.equals(keys.get(currentindex))) {
-                        if (lives == 3) {
-                            score = score + 500;
-                        } else if (lives == 2) {
-                            score += 300;
-                        } else {
-                            score += 200;
-                        }
                         done+=1;
+                        media1.start();
                         if(done<keys.size()){
+                            Toast.makeText(MainActivity6.this, "your guess is correct", Toast.LENGTH_SHORT).show();
                             currentindex+=1;
                             shuffle(keys);
                         }
                         else{
+                            score=store-score;
                             showDialog2(score);
+                            score=0;
+                            lives=3;
+                            heart3.setImageResource(R.mipmap.yellowheart);
+                            heart2.setImageResource(R.mipmap.yellowheart);
+                            heart1.setImageResource(R.mipmap.yellowheart);
                             Toast.makeText(MainActivity6.this, "done", Toast.LENGTH_SHORT).show();
+                            stop();
                         }
 
                     }
                     else if(lives==3){
+                        media4.start();
                         shuffle(keys);
                         heart3.setImageResource(R.drawable.ic_2);
                         Toast.makeText(MainActivity6.this, "your guess is wrong", Toast.LENGTH_SHORT).show();
                         lives-=1;
                     }
                     else if(lives==2){
+                        media4.start();
                         shuffle(keys);
                         Toast.makeText(MainActivity6.this, "your guess is wrong", Toast.LENGTH_SHORT).show();
                         heart2.setImageResource(R.drawable.ic_2);
                         lives-=1;
                     }
                     else if(lives==1) {
+                        media4.start();
                         shuffle(keys);
                         Toast.makeText(MainActivity6.this, "your guess is wrong", Toast.LENGTH_SHORT).show();
+                        showDialog2(score);
                         heart1.setImageResource(R.drawable.ic_2);
+                        stop();
                         lives -= 1;
                     }
 
@@ -261,6 +264,7 @@ public class MainActivity6 extends AppCompatActivity {
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                media2.start();
                 String s=String.valueOf(courseModelArrayList.get(position).getC());
                 texter(s);
             }
@@ -268,24 +272,18 @@ public class MainActivity6 extends AppCompatActivity {
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                media3.start();
                 showCustomDialog(mab.get(keys.get(currentindex)));
             }
         });
-        new CountDownTimer(timeleft, 1000) {
-            public void onTick(long millisUntilFinished) {
-                millisUntilFinished=timeleft;
-                // Used for formatting digit to be in 2 digits only
-                NumberFormat f = new DecimalFormat("00");
-                long hour = (millisUntilFinished / 3600000) % 24;
-                long min = (millisUntilFinished / 60000) % 60;
-                long sec = (millisUntilFinished / 1000) % 60;
-                timer.setText(f.format(hour) + ":" + f.format(min) + ":" + f.format(sec));
-            }
-            // When the task is over it will print 00:00:00 there
-            public void onFinish() {
-                timer.setText("00:00:00");
-            }
-        }.start();
+        SharedPreferences sharedPreferences2 = getSharedPreferences("highscorefile", MODE_PRIVATE);
+        int highscore = sharedPreferences2.getInt("highscorekey",0);
+
+        if (highscore<score) {
+            SharedPreferences.Editor editor2 = sharedPreferences.edit();
+            editor2.putInt("highscorekey", score);
+            editor2.commit();
+        }
     }
 
     private void showDialog2(int score){
@@ -302,6 +300,7 @@ public class MainActivity6 extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                media7.start();
                 Intent intent=new Intent(MainActivity6.this,MainActivity3.class);
                 startActivity(intent);
             }
@@ -309,7 +308,9 @@ public class MainActivity6 extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                media7.start();
                 shuffle(keys);
+                timeleft=getIntent().getIntExtra("timeleft",0);
                 dialog.dismiss();
             }
         });
@@ -350,4 +351,27 @@ public class MainActivity6 extends AppCompatActivity {
         });
         dialog.show();
     }
+    public void timey(final TextView txthello,final long timeleft) {
+        mcountdown=new CountDownTimer(timeleft,1000){
+            public void onTick ( long timeleft){
+                NumberFormat f = new DecimalFormat("00");
+                long hour = (timeleft/ 3600000) % 24;
+                long min = (timeleft / 60000) % 60;
+                long sec = (timeleft / 1000) % 60;
+                score=score+1;
+                txthello.setText(f.format(hour) + ":" + f.format(min) + ":" + f.format(sec));
+            }
+            public void onFinish () {
+                txthello.setText("00:00:00");
+                showDialog2(score);
+            }
+
+        };
+        mcountdown.start();
+    }
+    public void stop(){
+        mcountdown.cancel();
+    }
+
+
 }
