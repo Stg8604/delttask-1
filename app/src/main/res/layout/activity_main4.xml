@@ -8,8 +8,6 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="-55dp">
-
-
     <EditText
         android:id="@+id/edttxt2"
         android:layout_width="200dp"
@@ -161,6 +159,7 @@
             android:layout_height="50dp"
             android:background="@drawable/cornercut"
             android:padding="5dp"
+            android:textColor="@color/black"
             android:paddingTop="10dp"
             android:textAlignment="center"
             android:textSize="20sp"
@@ -169,6 +168,7 @@
             android:id="@+id/griddy"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:textColor="@color/black"
             android:layout_toRightOf="@id/X"
             android:layout_marginEnd="180dp"
             android:background="@drawable/cornercut"

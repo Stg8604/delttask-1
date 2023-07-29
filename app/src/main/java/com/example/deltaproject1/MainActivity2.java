@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity {
+    //yes
     private String one,two;
     private String temp="";
     private String temp2="";
@@ -57,7 +58,6 @@ public class MainActivity2 extends AppCompatActivity {
             char a=(char)(r.nextInt(26) + 'a');
                 elements.add(a);
                 i++;
-
         }
         Collections.shuffle(elements);
         Assign();

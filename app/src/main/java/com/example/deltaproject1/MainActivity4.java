@@ -69,7 +69,6 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
     }
-
     private void showdialog() {
         getWindow().setEnterTransition(new Slide());
         final Dialog dialog=new Dialog(MainActivity4.this);
@@ -93,7 +92,6 @@ public class MainActivity4 extends AppCompatActivity {
             public void onClick(View v) {
                 dialog.dismiss();
                 rl2.setVisibility(View.VISIBLE);
-
             }
         });
         dialog.show();

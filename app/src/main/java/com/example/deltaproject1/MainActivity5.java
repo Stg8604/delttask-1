@@ -2,6 +2,7 @@ package com.example.deltaproject1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -33,7 +34,6 @@ import java.util.Map;
 import java.util.Random;
 
 public class MainActivity5 extends AppCompatActivity {
-    private GridView griddy;
     private ArrayList<Character> all = new ArrayList<>();
     private HashMap<String, String> mab = new HashMap<>();
     private int gridboy1, gridboy2;
@@ -59,14 +59,13 @@ public class MainActivity5 extends AppCompatActivity {
     private long timeleft;
     private boolean run;
     private CountDownTimer county;
+    List<CardView> cardlist=new ArrayList<>();
     MediaPlayer media7,media1,media2,media3,media4,media5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
-        //Assigning gridview
         gv = (GridView) findViewById(R.id.idGVcourses);
-        //both are grid sizes
         gridboy1=getIntent().getIntExtra("grid1",0);
         gridboy2=getIntent().getIntExtra("grid2",0);
         media1=MediaPlayer.create(MainActivity5.this,R.raw.endgame);
@@ -85,81 +84,34 @@ public class MainActivity5 extends AppCompatActivity {
         totalgrid=gridboy1*gridboy2;
         info=findViewById(R.id.info2);
         gv.setNumColumns(gridboy2);
-
-        SharedPreferences sharedPreferences
-                = getSharedPreferences(
-                "sharedPrefs", MODE_PRIVATE);
-        final SharedPreferences.Editor editor
-                = sharedPreferences.edit();
-        final boolean isDarkModeOn
-                = sharedPreferences
-                .getBoolean(
-                        "isDarkModeOn", false);
-
-        // When user reopens the app
-        // after applying dark/light mode
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        final boolean isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false);
         if (isDarkModeOn) {
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_YES);
-            btnToggleDark.setText(
-                    "Disable Dark Mode");
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            btnToggleDark.setText("Disable Dark Mode");
         }
         else {
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_NO);
-            btnToggleDark
-                    .setText(
-                            "Enable Dark Mode");
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            btnToggleDark.setText("Enable Dark Mode");
         }
 
-        btnToggleDark.setOnClickListener(
-                new View.OnClickListener() {
+        btnToggleDark.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View view)
                     {
-                        // When user taps the enable/disable
-                        // dark mode button
                         if (isDarkModeOn) {
-
-                            // if dark mode is on it
-                            // will turn it off
-                            AppCompatDelegate
-                                    .setDefaultNightMode(
-                                            AppCompatDelegate
-                                                    .MODE_NIGHT_NO);
-                            // it will set isDarkModeOn
-                            // boolean to false
-                            editor.putBoolean(
-                                    "isDarkModeOn", false);
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                            editor.putBoolean("isDarkModeOn", false);
                             editor.apply();
-
-                            // change text of Button
-                            btnToggleDark.setText(
-                                    "Enable Dark Mode");
+                            btnToggleDark.setText("Enable Dark Mode");
                         }
                         else {
-
-                            // if dark mode is off
-                            // it will turn it on
-                            AppCompatDelegate
-                                    .setDefaultNightMode(
-                                            AppCompatDelegate
-                                                    .MODE_NIGHT_YES);
-
-                            // it will set isDarkModeOn
-                            // boolean to true
-                            editor.putBoolean(
-                                    "isDarkModeOn", true);
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                            editor.putBoolean("isDarkModeOn", true);
                             editor.apply();
-
-                            // change text of Button
-                            btnToggleDark.setText(
-                                    "Disable Dark Mode");
+                            btnToggleDark.setText("Disable Dark Mode");
                         }
                     }
                 });
@@ -175,19 +127,21 @@ public class MainActivity5 extends AppCompatActivity {
             temp=temp+"_ ";
             finalans.setText(temp);
         }
-        for(p=0;p<keys.size();p++){
-            while(i<keys.get(p).length()){
-                all.add(keys.get(p).charAt(i));
-                i++;
-            }
-            while(i<totalgrid){
-                Random r = new Random();
-                char a=(char)(r.nextInt(26) + 'a');
-                all.add(a);
+        for (String one : keys) {
+            i = 0;
+            while (i < one.length()) {
+                all.add(one.charAt(i));
                 i++;
             }
         }
-        for(int j=0;j<totalgrid;j++){
+
+        while (all.size() < totalgrid) {
+            Random r = new Random();
+            char a = (char) (r.nextInt(26) + 'a');
+            all.add(a);
+        }
+
+        for (int j = 0; j < totalgrid; j++) {
             courseModelArrayList.add(new CourseModel(all.get(j)));
         }
         Collections.shuffle(courseModelArrayList);
@@ -202,6 +156,7 @@ public class MainActivity5 extends AppCompatActivity {
                     finalans.setText(temp);
                 }
                 finalans.setText(temp);
+                change();
             }
         });
         check.setOnClickListener(new View.OnClickListener() {
@@ -227,6 +182,7 @@ public class MainActivity5 extends AppCompatActivity {
                             Toast.makeText(MainActivity5.this, "your guess is correct", Toast.LENGTH_SHORT).show();
                             currentindex+=1;
                             shuffle(keys);
+                            change();
                         }
                         else{
                             showDialog2(score);
@@ -245,6 +201,7 @@ public class MainActivity5 extends AppCompatActivity {
                         heart3.setImageResource(R.drawable.ic_action_name);
                         Toast.makeText(MainActivity5.this, "your guess is wrong", Toast.LENGTH_SHORT).show();
                         lives-=1;
+                        change();
                     }
                     else if(lives==2){
                         media4.start();
@@ -252,6 +209,7 @@ public class MainActivity5 extends AppCompatActivity {
                         Toast.makeText(MainActivity5.this, "your guess is wrong", Toast.LENGTH_SHORT).show();
                         heart2.setImageResource(R.drawable.ic_action_name);
                         lives-=1;
+                        change();
                     }
                     else if(lives==1) {
                         media4.start();
@@ -259,20 +217,24 @@ public class MainActivity5 extends AppCompatActivity {
                         Toast.makeText(MainActivity5.this, "your guess is wrong", Toast.LENGTH_SHORT).show();
                         heart1.setImageResource(R.drawable.ic_action_name);
                         lives -= 1;
+                        change();
                     }
 
                 }else{
                     Toast.makeText(MainActivity5.this, "enter appropriately", Toast.LENGTH_SHORT).show();
+                    change();
                 }
             }
             });
-
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 media2.start();
                 String s=String.valueOf(courseModelArrayList.get(position).getC());
                 texter(s);
+                CardView cardView = (CardView) view;
+                cardView.setVisibility(View.INVISIBLE);
+                cardlist.add(cardView);
             }
         });
         info.setOnClickListener(new View.OnClickListener() {
@@ -284,14 +246,17 @@ public class MainActivity5 extends AppCompatActivity {
         });
         SharedPreferences sharedPreferences2 = getSharedPreferences("highscorefile", MODE_PRIVATE);
         int highscore = sharedPreferences2.getInt("highscorekey",0);
-
         if (highscore<score) {
             SharedPreferences.Editor editor2 = sharedPreferences.edit();
             editor2.putInt("highscorekey", score);
             editor2.commit();
         }
     }
-
+    private void change(){
+        for(CardView card:cardlist){
+            card.setVisibility(View.VISIBLE);
+        }
+    }
     private void showDialog2(int score){
             getWindow().setEnterTransition(new Slide());
             final Dialog dialog=new Dialog(MainActivity5.this);
