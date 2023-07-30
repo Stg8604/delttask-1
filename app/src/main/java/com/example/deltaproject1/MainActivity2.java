@@ -307,6 +307,10 @@ public class MainActivity2 extends AppCompatActivity {
                 media5.start();
                 Collections.shuffle(elements);
                 change();
+                lives=3;
+                heart1.setImageResource(R.mipmap.yellowheart);
+                heart2.setImageResource(R.mipmap.yellowheart);
+                heart3.setImageResource(R.mipmap.yellowheart);
                 dialog.dismiss();
             }
         });

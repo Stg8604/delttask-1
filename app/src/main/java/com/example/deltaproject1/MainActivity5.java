@@ -218,6 +218,7 @@ public class MainActivity5 extends AppCompatActivity {
                         heart1.setImageResource(R.drawable.ic_action_name);
                         lives -= 1;
                         change();
+                        showDialog2(score);
                     }
 
                 }else{

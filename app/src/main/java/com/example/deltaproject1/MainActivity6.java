@@ -61,6 +61,7 @@ public class MainActivity6 extends AppCompatActivity {
     private TextView timer;
     private Button stort;
     private long timeleft;
+    private long originaltime;
     List<CardView> cardlist=new ArrayList<>();
     private boolean run;
     private CountDownTimer county;
@@ -86,6 +87,7 @@ public class MainActivity6 extends AppCompatActivity {
         finalans=findViewById(R.id.ansy);
         timer=findViewById(R.id.timebox);
         stort=findViewById(R.id.starttime);
+        originaltime=timeleft;
         media7=MediaPlayer.create(MainActivity6.this,R.raw.home);
         timeleft=(long)(getIntent().getIntExtra("timeleft",0));
         btnToggleDark=findViewById(R.id.btnToggleDark);
@@ -224,6 +226,7 @@ public class MainActivity6 extends AppCompatActivity {
                         stop();
                         lives -= 1;
                         change();
+                        showDialog2(score);
                     }
 
                 }else{
@@ -264,16 +267,17 @@ public class MainActivity6 extends AppCompatActivity {
             card.setVisibility(View.VISIBLE);
         }
     }
-    private void showDialog2(int score){
+    private void showDialog2(int score2){
         getWindow().setEnterTransition(new Slide());
         final Dialog dialog=new Dialog(MainActivity6.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.popup2);
         TextView txt=dialog.findViewById(R.id.score);
-        txt.setText("Your Score:"+Integer.toString(score));
+        txt.setText("Your Score:"+Integer.toString(score2));
         ExtendedFloatingActionButton btn1=dialog.findViewById(R.id.home);
         ExtendedFloatingActionButton btn2=dialog.findViewById(R.id.again);
+        score=0;
         dialog.show();
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -289,6 +293,7 @@ public class MainActivity6 extends AppCompatActivity {
                 media7.start();
                 shuffle(keys);
                 timeleft=getIntent().getIntExtra("timeleft",0);
+                change();
                 dialog.dismiss();
             }
         });
